@@ -16,28 +16,33 @@ Pumping LATISS to vacuum
 ========================
 
 Under atypical circumstances, LATISS needs to be warmed up to ambient temperature. 
-Large periods of power outage, severe earthquakes (`and different levels of recovery based on severity <https://tstn-027.lsst.io>`__), or technical intervention may have necessitated warm-up.
+Large periods of power outage, severe earthquakes (`and different levels of intervention based on severity <https://tstn-027.lsst.io>`__), or technical intervention may have necessitated warm-up.
 Pumping down, cooling, and powering up LATISS takes at least two days, and must be organized by ticket on the summit calendar and supported by daytime engineering support. 
 Mario Rivera, Craig Lage, and Alysha Shugart are points of contact for understanding and initiating the procedure. 
 
 Getting started
 ---------------
 
-AuxTel must be under LOTO or the `E-STOP <https://obs-ops.lsst.io/Daytime-Operations/Auxiliary-Telescope/AuxTel-E-Stop-Procedure/E-Stop-Procecure.html>`__ must be engaged to perform this operation. 
+AuxTel must be under LOTO and the `E-STOP <https://obs-ops.lsst.io/Daytime-Operations/Auxiliary-Telescope/AuxTel-E-Stop-Procedure/E-Stop-Procecure.html>`__ must be engaged to perform this operation. 
 The safety team is responsible for the the approval of the LOTO procedure, which will be linked on this page once it is affirmed.
  
-Start by powering up the instrument cooling electronics, located in the first floor cabinet. 
-It is important to make sure that the electronics are turned on but the outputs are disabled, so no control loops are operating on LATISS until it's under vacuum. 
-These electronics consist of:
+Start by powering up the instruments required to support the LATISS cooldown, located in the first floor cabinet. 
 
--  3 HMP2030 power supplies
--	1 Keithley 6487 Voltage Source
--	1 Advantech Uno-1483G-434AE rail controller (not used in the process)
+.. important::
+   The instruments can be damaged by prematurely powering on the polycold system. 
+   Extreme caution must be exercised to ensure that everything is ready before starting to cool.
+
+It is important to make sure that the electronics are turned on but the outputs are disabled, so no control loops are operating on LATISS until it's under vacuum. 
+These electronics to be powered on consist of:
+
+-  3 HMP2030 power supplies (powered by rocker switch in the back of the PDU in the cabinet)
+-	1 Keithley 6487 Voltage Source (rocker switch on the back of the device)
+-	1 Advantech Uno-1483G-434AE rail controller (HCU for ATCamera, reports and publishes sensor values)
 -	1 Cryocon temperature controller (for CCD sensor)
 
 .. figure:: /_static/power_supply_picometer.png
-   :name: power-supply-picometer
-   :alt: Power supply picometer
+   :name: power-supply-picoammeter
+   :alt: Power supply picoammeter
 
    HMP2030 Power Supply (left) and Keithley 6487 Voltage source (right).
 
@@ -50,7 +55,7 @@ These electronics consist of:
 Setting up the turbo (vacuum) pump
 ----------------------------------
 
-The spectrograph needs to work in a good vacuum (~10−7 Torr). For reaching this vacuum, there are two devices involved:
+The CCD needs to work in a good vacuum (~10−7 Torr). For reaching this vacuum, there are two devices involved:
 
 -	Pfeifer Turbopump (to be used from 1 Torr to ~10−6 Torr), complete with vacuum hose, pressure sensor and the sensor’s electronic display
 
@@ -63,8 +68,7 @@ The spectrograph needs to work in a good vacuum (~10−7 Torr). For reaching thi
    Pfeifer turbopump and accessories.
 
 The Pfeifer turbopump lives in the AuxTel storage container on Calibration Hill. 
-The turbo pump, vacuum hose, power supplies, and pressure sensor are stored together on the floor and first shelf of the storage container. 
-The cardboard storage box is labeled. 
+The turbo pump, vacuum hose, power supplies, and pressure sensor are stored together on the floor and first shelf of the storage container in a labeled cardboard box.
 The key to the storage container is found in the key box on the second floor (control room floor) of the main building, to the right of the main entrance doors. 
 Mario Rivera also has a copy. 
 
@@ -75,13 +79,13 @@ Mario Rivera also has a copy.
    Turbo pump supplies located in the storage unit outside of the AuxTel dome.
 
 The ion pump (mounted on LATISS) doesn’t have enough capacity to evacuate the dewar from normal atmospheric pressure to working pressure, so the Pfeifer Turbopump has to be used first. 
-The ion pump should be started only after ~10−6 Torr is reached (as the high pressure could destroy the ion pump).
+The ion pump should be started only after ~10−6 Torr is reached (as operating the ion pump at higher pressures significantly decreases its lifespan).
 
 Connect the turbopump to the dewar
 -----------------------------------
 
 Put the turbopump in a stable position close enough to the dewar position (to be close to the flange connections). 
-An example setup is shown in Figure 5. 
+An example setup is shown in :ref:`turbopump-setup`. 
 
 .. warning::
    The Pfeifer Turbopump must be supported on a stable surface and strapped to the observing deck grating to ensure its safety in the case of an earthquake. 
@@ -96,7 +100,8 @@ An example setup is shown in Figure 5.
 
    Left - Connecting the turbopump to the dewar. Right - Vacuum hose connection to the dewar. 
 
-Remove the vacuum covers, and clean the turbopump and the hose flange with isoporpyl alcohol (using gloves), to avoid introducing contaminants inside the turbopump and hose.
+Remove the vacuum covers, and clean the turbopump and the hose flange with isopropyl alcohol and kimwipes (while wearing latex gloves), to avoid introducing contaminants inside the turbopump and hose.
+Store any unused vacuum connections on top of kimwipes in a clean location in the AuxTel dome.
 Connect the hose to the turbopump flange. 
 The hose has to be in a relaxed shape, with no turn or folds. 
 
@@ -113,8 +118,9 @@ Check the turbopump output valve is closed.
    Picture of the LATISS dewar valve. 
 
 .. note:: 
-   The turbopump pump output valve is not typically used during the procedure. 
-   What is important is that the pressure in the vacuum line to be lower than the pressure of the dewar BEFORE opening the dewar valve. 
+   The turbopump output valve is a vent that has to be closed. 
+   It is a black thumbscrew located on the pipe that enters the red vacuum sensor box. 
+   What is important is that the pressure in the vacuum line IS LOWER than the pressure of the dewar BEFORE EVER opening the dewar valve. 
 
 Starting the turbopump
 ----------------------
@@ -133,9 +139,9 @@ To start the electronic display read out, press and hold the up arrow key for th
 
 .. note::
    The setup in the left photo of Fig. 7 is example only. 
-   Please do not operate the Turbopump on a non-rigid surface. 
+   DO NOT operate the Turbopump on a non-rigid surface. 
 
-Connect the turbopump to a secure electrical outlet, and turn the flip switch (at the back of the device on the lower right) to turn the pump on.
+Connect the turbopump to a secure electrical outlet, and turn the rocker switch (at the back of the device on the lower right) to turn the pump on.
 This only puts the pump in operational condition, it’s not evacuating air yet.
 
 Start the pump (with the front power button). 
@@ -151,9 +157,9 @@ Before opening the instrument dewar valve, it’s necessary to have similar vacu
 If this is not the case, the turbopump or the dewar inside LATISS could receive a high pressure shock. 
 Ideally, you should wait until the pressure is lower on the turbopump's side.
 
-- If the dewar was evacuated completely, its pressure should be close to the turbopump at this point (~ atmospheric pressure).
+- If the dewar has been warmed up and opened or vented, it may be at atmospheric pressure or under a slight positive pressure if purged with dry nitrogen.
 
-- If the dewar was partially evacuated, it could have a pressure lower than atmospheric (e.g. ~10−3 Torr).
+- If the dewar has been warmed up but not vented, the pressure will be approximately the partial pressure of water vapor (~20 TORR).
 
 In any case, the pressures on both the pump and the dewar should be on the same order of magnitude before opening the dewar valve. 
 If the dewar pressure is ~10−3 Torr, open the dewar valve only when the pump pressure is lower than ~10−3 Torr. 
