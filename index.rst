@@ -85,7 +85,7 @@ Connect the turbopump to the dewar
 -----------------------------------
 
 Put the turbopump in a stable position close enough to the dewar position (to be close to the flange connections). 
-An example setup is shown in :ref:`turbopump-setup`. 
+An example setup is shown in Figure 5. 
 
 .. warning::
    The Pfeifer Turbopump must be supported on a stable surface and strapped to the observing deck grating to ensure its safety in the case of an earthquake. 
@@ -159,7 +159,7 @@ Ideally, you should wait until the pressure is lower on the turbopump's side.
 
 - If the dewar has been warmed up and opened or vented, it may be at atmospheric pressure or under a slight positive pressure if purged with dry nitrogen.
 
-- If the dewar has been warmed up but not vented, the pressure will be approximately the partial pressure of water vapor (~20 TORR).
+- If the dewar has been warmed up but not vented, the pressure will be approximately the partial pressure of water vapor (~20 Torr).
 
 In any case, the pressures on both the pump and the dewar should be on the same order of magnitude before opening the dewar valve. 
 If the dewar pressure is ~10−3 Torr, open the dewar valve only when the pump pressure is lower than ~10−3 Torr. 
@@ -170,10 +170,112 @@ If the dewar pressure is ~10−3 Torr, open the dewar valve only when the pump p
    Upon opening the dewar valve, the pressure in the vacuum line will spike. 
    Close the dewar valve again until the pressure settles, and slowly reintroduce the pressure differential. 
 
+ .. note::
+   It can take up to 24 hours to go from 10e-2 Torr to 5e-6 Torr. 
+   Be prepared to pump for one full day.  
+
+
+Set up the cryogenics
+---------------------
+
+Once the dewar pressure is reaching 10-6 Torr, it’s time to start the cryogenics devices, to start controlling the dewar temperatures. 
+For this, we have these devices:
+
+-	Polycold Cryochiller
+-	Cryocon 24C unit, for temperature monitoring
+
+The Cryocon controls the temperature of:
+
+-  CCD stage, which is reported on Channel A. The set point is 179K.
+-  Cryohead which is reported on Channel B. The set point is 126K.
+-  Cold plate which is reported on Channel C. The set point is 158K.
+
+.. note::
+   An important point to note is the CCD stage must always be the warmest device - at least 3K higher than the cold plate - to avoid condensation.
+   This is especially important when warming the dewar (as the Cryohead and Cold plate tend to warm faster than the CCD stage).
+
+For setting the control temperature loops, the Cryocon uses Channels A (CCD Stage), B (Cryohead) and C (Cold plate).
+The control loop setup (for cooling down the temperatures in a controlled way) is done through the ‘’Loop’’ buttons (1 and 2).
+
+.. figure:: /_static/cryocon.png
+   :name: cryocon
+   :alt: Cryocon
+
+   Cryocon temperature controller display and panel. Located on the first floor in the large electronics box.
+
+The normal setup parameters should be stored on the device. 
+You may find an example setup screen in Fig. 13. 
+
+To set up the Cryocon, the steps are:
+
+- Check the above parameters (shown in Fig, 12) for Loop 1 (CCD stage).
+- Verify that “SetPt” = 179K.
+- Check the above parameters for Loop 2 (Cold plate), with ‘’SetPt’’= 158K, and ‘’Type’’ = Manual
+- Press the ‘’Control’’ button, and verify the indicator appears blue.
+
+**In case the values are not correct, or the heater power needs to be changed, you must manually enter the values you want.** 
+   
+- Press the “loop 1” button to enter the settings panel for the CCD stage. 
+- Use the arrow keys to navigate to the value you want to change,
+- For example, to change Pman (the percentage of power applied to heat the element) from 15% to 1%, press the arrow keys until the # sign is next to the value.
+- Press the “SetPT” button to change the value.
+
+   - The first time you hit the “SetPT” button, the value will change to “-“.
+   - Hit “SetPT” button again to clear the field, and use the number pad to enter a decimal value. 
+
+- Hit “Enter” to save the new value.
+
+.. figure:: /_static/cryogen_settings.png
+   :name: cryogen settings
+   :alt: Cryogen settings
+
+.. figure:: /_static/cryogenic_loop1.png
+   :name: cryogenic loop 1
+   :alt: Cryogenic settings for loop 1
+
+   Nominal values for Channels A, B, and C, as well as loop 1 and loop 2 settings. 
+
+Press the "control" button to apply the settings you have applied in loops 1 and 2.
+Press the "home" button to go back to the home screen.
+There will be a power bar under Channel A or Channel B inidcating that a heater is on. 
+A blue light next to the word "control" on the front of the panel will illuminate.
+
+.. note::
+   You might see the blue control light turn off and you see an error "Overtemp" under the temperatures. 
+   Overtemp indicates that the controller’s Internal Temperature Monitor circuit shut off the heater. 
+   This fault is usually the result of a shorted heater or use of a heater. 
+   After the controller has been allowed to cool to an acceptable temperature, pressing the Control key will clear the error and restore control mode.
+   See this `quick-guide <https://www.qdindustria.it/wp-content/uploads/2018/02/Cryo-Con-Model-24C-Temperature-Controller-Quick-start-guide.pdf>`__.
+
+
+Turn on the Polycold
+--------------------
+
+Before turning on the ion pump, it's time to start chilling the instrument so you can supplement the low pressure of the ion pump with a super-cooled environment. 
+Make sure the CCD stage is under manual heat control, and that you are applying 5-10% heat before you turn on the Polycold chiller, which is located just to the left of the large electronics cabinet. 
+To turn it on, just press the rocker switch on the right hand side of the box. 
+
+Temperatures should start dropping quickly, but remain in the dome and watch the temperature of the CCD.
+It must always be 3K above the other devices, so change the amount of heat applied if it is cooling too quickly. 
+
+In Chronograph, use the "AuxTel Temperatures and Pressures" dashboard to watch the temperatures of the instrument and watch the refrigerant supply and return pressures. 
+The supply pressure should be about 1.9 MPa, and the return about 400 kPa.
+
+.. warning::
+   If you see the cold head temperature (Channel B) drop quickly, and the return supply drops to 40K - 0 Pa, this could indicate contamination in the lines.
+   If there is water, it is being pushed through the system and freezing quickly to the cold head, causing a blockage.
+   Stop the chiller after a few minutes if the CCD and cold plate temperatures are not still falling.
+   If the return pressure does not recover within a few minutes, turn off the Polycold Chiller. 
+
+After all the above steps, the temperatures should start to go down in a controlled way, until the CCD stage reach the desired setpoint (179K). 
+It will take several hours to cool down, so this process should require an overnight stay or monitoring. 
+After that, the Cryocon will start controlling automatically.
+
 Starting the ion pump
 ---------------------
 
-The turbopump should have reached a pressure of about ~10−5 Torr. At this point, you can start the ion pump.
+The dewar should have reached a pressure of about ~10−6 Torr and the CCD under loop control. 
+At this point, you can start the ion pump.
 The ion pump is on the instrument mount itself, hanging upside down. 
 To turn it on, simply flip the switch on the front of the box. 
 
@@ -223,75 +325,6 @@ Verify that the pump blades are not spinning (this could take some time, as it d
    It is good practice to leave the turbopump connected to the instrument dewar just in case it is needed to pump further. 
    Only disconnect the turbopump when you have the CCD cooled to operating temperature and the cryogenic control loops in place.
 
-Set up the cryogenics
----------------------
-
-Once the dewar pressure is reaching 10-7 Torr, it’s time to start the cryogenics devices, to start controlling the dewar temperatures. 
-For this, we have these devices:
-
--	Polycold Cryochiller
--	Cryocon 24C unit, for temperature monitoring
-
-The Cryocon controls the temperature of:
-
--  CCD stage, which is reported on Channel A. The set point is 179K.
--  Cryohead which is reported on Channel B. The set point is 126K.
--  Cold plate which is reported on Channel C. The set point is 158K.
-
-.. note::
-   An important point to note is the CCD stage must always be the warmest device - at least 3K higher than the cold plate - to avoid condensation.
-   This is especially important when warming the dewar (as the Cryohead and Cold plate tend to warm faster than the CCD stage).
-
-For setting the control temperature loops, the Cryocon uses Channels A (CCD Stage), B (Cryohead) and C (Cold plate).
-The control loop setup (for cooling down the temperatures in a controlled way) is done through the ‘’Loop’’ buttons (1 and 2).
-
-.. figure:: /_static/cryocon.png
-   :name: cryocon
-   :alt: Cryocon
-
-   Cryocon temperature controller display and panel. Located on the first floor in the large electronics box.
-
-The normal setup parameters should be stored on the device. 
-You may find an example setup screen in Fig. 13. 
-
-To set up the Cryocon, the steps are:
-
-- Check the above parameters (shown in Fig, 12) for Loop 1 (CCD stage).
-- Verify that “SetPt” = 179K.
-- Check the above parameters for Loop 2 (Cold plate), with ‘’SetPt’’= 158K, and ‘’Type’’ = Manual
-- Press the ‘’Control’’ button, and verify the indicator appears blue.
-
-**In case the values are not correct, or the heater power needs to be changed, you must manually enter the values you want.** 
-   
-- Press the “loop 1” button to enter the settings panel for the CCD stage. 
-- Use the arrow keys to navigate to the value you want to change,
-- For example, to change Pman from 15% to 1%, press the arrow keys until the # sign is next to the value.
-- Press the “SetPT” button to change the value.
-
-   - The first time you hit the “SetPT” button, the value will change to “-“.
-   - Hit “SetPT” button again to clear the field, and use the number pad to enter a decimal value. 
-
-- Hit “Enter” to save the new value.
-
-.. figure:: /_static/cryogen_settings.png
-   :name: cryogen settings
-   :alt: Cryogen settings
-
-.. figure:: /_static/cryogenic_loop1.png
-   :name: cryogenic loop 1
-   :alt: Cryogenic settings for loop 1
-
-   Nominal values for Channels A, B, and C, as well as loop 1 and loop 2 settings. 
-
-Turn on the Polycold
---------------------
-
-After the above steps, it’s time to turn on the Polycold, which is located just to the left of the large electronics cabinet. 
-For this, just press the start switch.
-
-After all the above steps, the temperatures should start to go down in a controlled way, until the CCD stage reach the desired setpoint (179K). 
-It will take several hours to cool down, so this process should require an overnight stay or monitoring. 
-After that, the Cryocon will start controlling automatically.
 
 Checking the cryocon status remotely with CCS
 ---------------------------------------------
@@ -429,10 +462,3 @@ In case of a unexpected power cut (storm or large earthquake), if LATISS goes in
   Add heat to the CCD if it's getting too cold. 
   This is a process of trial and error. 
 
-
-.. Make in-text citations with: :cite:`bibkey`.
-.. Uncomment to use citations
-.. .. rubric:: References
-.. 
-.. .. bibliography:: local.bib lsstbib/books.bib lsstbib/lsst.bib lsstbib/lsst-dm.bib lsstbib/refs.bib lsstbib/refs_ads.bib
-..    :style: lsst_aa
