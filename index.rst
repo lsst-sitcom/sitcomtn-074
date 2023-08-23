@@ -204,13 +204,13 @@ The control loop setup (for cooling down the temperatures in a controlled way) i
    Cryocon temperature controller display and panel. Located on the first floor in the large electronics box.
 
 The normal setup parameters should be stored on the device. 
-You may find an example setup screen in Fig. 13. 
+You may find an example setup screen in Fig. 10. 
 
 To set up the Cryocon, the steps are:
 
-- Check the above parameters (shown in Fig, 12) for Loop 1 (CCD stage).
+- Check the above parameters (shown at the bottom of Fig. 10) for Loop 1 (CCD stage).
 - Verify that “SetPt” = 179K.
-- Check the above parameters for Loop 2 (Cold plate), with ‘’SetPt’’= 158K, and ‘’Type’’ = Manual
+- Check the above parameters for Loop 2 (Cold plate), with ‘’SetPt’’= 157K, and ‘’Type’’ = Manual
 - Press the ‘’Control’’ button, and verify the indicator appears blue.
 
 **In case the values are not correct, or the heater power needs to be changed, you must manually enter the values you want.** 
@@ -256,10 +256,10 @@ Make sure the CCD stage is under manual heat control, and that you are applying 
 To turn it on, just press the rocker switch on the right hand side of the box. 
 
 Temperatures should start dropping quickly, but remain in the dome and watch the temperature of the CCD.
-It must always be 3K above the other devices, so change the amount of heat applied if it is cooling too quickly. 
+It must always be 3K above the other devices, so increase the % power (amount of heat applied) if it is cooling too quickly and is close to becoming colder than the cold plate or cryohead. 
 
 In Chronograph, use the "AuxTel Temperatures and Pressures" dashboard to watch the temperatures of the instrument and watch the refrigerant supply and return pressures. 
-The supply pressure should be about 1.9 MPa, and the return about 400 kPa.
+The supply pressure should be about 1.8-1.9 MPa, and the return about 150-400 kPa.
 
 .. warning::
    If you see the cold head temperature (Channel B) drop quickly, and the return supply drops to 40K - 0 Pa, this could indicate contamination in the lines.
@@ -267,9 +267,10 @@ The supply pressure should be about 1.9 MPa, and the return about 400 kPa.
    Stop the chiller after a few minutes if the CCD and cold plate temperatures are not still falling.
    If the return pressure does not recover within a few minutes, turn off the Polycold Chiller. 
 
-After all the above steps, the temperatures should start to go down in a controlled way, until the CCD stage reach the desired setpoint (179K). 
+After all the above steps, the temperatures should start to go down in a controlled way, until the CCD stage reach the desired setpoint (179K).  
 It will take several hours to cool down, so this process should require an overnight stay or monitoring. 
-After that, the Cryocon will start controlling automatically.
+When the CCD reaches the desired setpoint, change the loop control from "manual" to "PID" in the loop 1 settings. 
+After that, the Cryocon will maintain the CCD temperature automatically.
 
 Starting the ion pump
 ---------------------
