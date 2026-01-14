@@ -1,6 +1,12 @@
-:tocdepth: 1
+######################################
+LATISS Warm-up and Cool-down Procedure
+######################################
 
-.. sectnum::
+.. abstract::
+
+   This document describes the procedure to warm up or cool down LATISS to operational temperatures, including various scenarios for each occurrence. 
+
+
 
 .. Metadata such as the title, authors, and description are set in metadata.yaml
 
@@ -462,4 +468,3 @@ In case of a unexpected power cut (storm or large earthquake), if LATISS goes in
   This is where you need to intervene with the cryocon (see sections 2.6 and 3). 
   Add heat to the CCD if it's getting too cold. 
   This is a process of trial and error. 
-
