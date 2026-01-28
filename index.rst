@@ -176,7 +176,7 @@ If the dewar pressure is ~10−3 Torr, open the dewar valve only when the pump p
    Upon opening the dewar valve, the pressure in the vacuum line will spike. 
    Close the dewar valve again until the pressure settles, and slowly reintroduce the pressure differential. 
 
- .. note::
+.. note::
    It can take up to 24 hours to go from 10e-2 Torr to 5e-6 Torr. 
    Be prepared to pump for one full day.  
 
@@ -192,13 +192,13 @@ For this, we have these devices:
 
 The Cryocon controls the temperature of:
 
--  CCD stage, which is reported on Channel A. The set point is 179K.
+-  CCD stage, which is reported on Channel A. The set point is 169K.
 -  Cryohead which is reported on Channel B. The set point is 126K.
 -  Cold plate which is reported on Channel C. The set point is 158K.
 
 .. note::
-   An important point to note is the CCD stage must always be the warmest device - at least 3K higher than the cold plate - to avoid condensation.
-   This is especially important when warming the dewar (as the Cryohead and Cold plate tend to warm faster than the CCD stage).
+   **An important point to note is the CCD stage must always be the warmest device - at least 3K higher than the cold plate - to avoid condensation.
+   This is especially important when warming the dewar (as the Cryohead and Cold plate tend to warm faster than the CCD stage).**
 
 For setting the control temperature loops, the Cryocon uses Channels A (CCD Stage), B (Cryohead) and C (Cold plate).
 The control loop setup (for cooling down the temperatures in a controlled way) is done through the ‘’Loop’’ buttons (1 and 2).
@@ -215,8 +215,8 @@ You may find an example setup screen in Fig. 10.
 To set up the Cryocon, the steps are:
 
 - Check the above parameters (shown at the bottom of Fig. 10) for Loop 1 (CCD stage).
-- Verify that “SetPt” = 179K.
-- Check the above parameters for Loop 2 (Cold plate), with ‘’SetPt’’= 157K, and ‘’Type’’ = Manual
+- Verify that “SetPt” = 169K.
+- Check the above parameters for Loop 2 (Cold plate), with ‘’SetPt’’= 158K, and ‘’Type’’ = Manual
 - Press the ‘’Control’’ button, and verify the indicator appears blue.
 
 **In case the values are not correct, or the heater power needs to be changed, you must manually enter the values you want.** 
