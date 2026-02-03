@@ -196,9 +196,9 @@ The Cryocon controls the temperature of:
 -  Cryohead which is reported on Channel B. The set point is 126K.
 -  Cold plate which is reported on Channel C. The set point is 158K.
 
-.. note::
-   **An important point to note is the CCD stage must always be the warmest device - at least 3K higher than the cold plate - to avoid condensation.
-   This is especially important when warming the dewar (as the Cryohead and Cold plate tend to warm faster than the CCD stage).**
+.. warning::
+   An important point to note is the CCD stage must always be the warmest device - at least 3K higher than the cold plate - to avoid condensation.
+   This is especially important when warming the dewar (as the Cryohead and Cold plate tend to warm faster than the CCD stage).
 
 For setting the control temperature loops, the Cryocon uses Channels A (CCD Stage), B (Cryohead) and C (Cold plate).
 The control loop setup (for cooling down the temperatures in a controlled way) is done through the ‘’Loop’’ buttons (1 and 2).
@@ -253,6 +253,14 @@ A blue light next to the word "control" on the front of the panel will illuminat
    After the controller has been allowed to cool to an acceptable temperature, pressing the Control key will clear the error and restore control mode.
    See this `quick-guide <https://www.qdindustria.it/wp-content/uploads/2018/02/Cryo-Con-Model-24C-Temperature-Controller-Quick-start-guide.pdf>`__.
 
+.. note::
+   Note from **January 2026**. On the PID control loops, note that Control loop#2 (Cold plate) has P, I, and D parameters. 
+   This is because Craig and Manuel ran the autotune process in the CryoCon manual to set those parameters. 
+   Control loop#1 (CCD) has only manually set P and I parameters. 
+   Craig once tried to run the autotune process on control loop#1, but it wouldn't converge. 
+   It might be worthwhile to try again to run autotune on control loop #1. 
+   If it had a full set of P, I, and D parameters, it might be less likely to show oscillations. 
+   The oscillations are small, so it's not a real problem, but the autotune might be an improvement.
 
 Turn on the Polycold
 --------------------
