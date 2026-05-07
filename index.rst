@@ -289,7 +289,12 @@ After that, the Cryocon will maintain the CCD temperature automatically.
 Starting the ion pump
 ---------------------
 
-The dewar should have reached a pressure of about ~10−6 Torr and the CCD under loop control. 
+The dewar should have reached a pressure of about ~10−6 Torr and the CCD under loop control.
+This means that the CCD is close to its target temperature of ~-100C.  As the dewar cools,
+you will see the pressure in the dewar drop below what was achieved with the turbo pump
+alone.  This is because the molecular sieve in the dewar will begin pumping as it gets cold.
+Ideally, with the combination of the turbo pump and the cryo-pumping from the dewar, 
+the pressure will be on the order of 1-2E-6.  
 At this point, you can start the ion pump.
 The ion pump is on the instrument mount itself, hanging upside down. 
 To turn it on, simply flip the switch on the front of the box. 
